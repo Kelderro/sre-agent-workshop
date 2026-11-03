@@ -1,7 +1,9 @@
 ## Incident summary
-`POST /api/feature` on App Service `web-olwf` returns HTTP 500 while the rest of the application remains healthy. Application Insights telemetry confirms 10+ consecutive failures, all returning HTTP 500. The failure is caused by a `NotImplementedException` thrown in the `HandleFeature` method in `Program.cs`.
+`POST /api/feature` on App Service `<app-name>` returned HTTP 500 for `<verified-failure-count>` requests during `<UTC-window>`. Application Insights recorded `System.NotImplementedException` events; correlate a failed request and exception by operation ID before attributing the failure to `HandleFeature` in `Program.cs`. Confirm separately that `GET /health` remained healthy.
 
-**Alert**: `unfinished-feature-5xx` (Sev2) — fires when `POST /api/feature` records more than three failures in five minutes.
+Replace every placeholder with evidence from this incident. If counts or correlation cannot be verified, describe the gap instead of copying an unverified claim into the issue.
+
+**Alert**: `<workload>-unfinished-feature-5xx` (Sev2) — fires when `POST /api/feature` records more than three failures in five minutes.
 
 ## Expected behavior
 POST /api/feature returns HTTP 200.
